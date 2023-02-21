@@ -1,0 +1,173 @@
+/*setup*/
+    *{
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        cursor: none;
+        /* user-select:none; */
+        font-family: Verdana, Tahoma, sans-serif;
+    }
+    body{
+        background-image: url("lib/title.png");
+        background-color: #121212;
+    }
+    title{
+        display: none;
+    }
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
+    h1{
+            text-decoration: none;
+            font-weight: normal;
+            font-size: larger;
+    }
+
+
+    ::-moz-selection { /* Code for Firefox */
+        color: aliceblue;
+        background: rgba(209, 209, 209,0.1);
+    }
+    ::selection {
+    color: aliceblue;
+    background: rgba(209, 209, 209,0.1);
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+      }
+
+/*nav*/
+    nav{
+        width:100%;
+        /* background-color: #121212; */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        align-items:center;
+        position: sticky;
+        padding: 5px 10px;
+        max-height: 70px;
+    }
+    .nav-logo-container{
+        margin: none;
+        width: 30%;
+        display: flex;
+        align-items:end;
+        flex-direction: row;
+    }
+    #main-nav-logo{
+        min-height: 32px;
+        min-width: 32px;
+        max-width: 60px;
+        max-height: 60px;
+        background: rgba(0, 0, 0, 0);
+    }
+    .nav-title{
+        font-size:larger;
+        padding-bottom: 10px;
+        letter-spacing: 10px;
+        text-align: center;
+        color: aliceblue;
+        transition: all .5s;
+    }
+    .nav-container{
+        padding: 15px 1% 0px 0px;
+    }
+    .main-nav{
+        background:none;
+        font-size: larger;
+        margin: 10px 10px;
+        color:aliceblue;
+        align-items: center;
+        border: 1px transparent solid;
+        padding: 5px 10px 5px 10px;
+        transition: all .2s ease-out;
+    }
+
+    /* nav animation */
+        .main-nav:hover,.main-nav:focus{
+            translate: 10px 0px;
+            color: rgb(170, 117, 255);
+            text-shadow: 0px 0px 1px aliceblue;
+        }
+
+        .nav-title:hover,.nav-title:focus{
+            letter-spacing: 2px;
+        }
+        .nav-title:hover h1{
+            display: none;
+        }
+        .nav-title:hover:after{
+            font-size: larger;
+            content: "Petra Michael";
+        }
+/*Horizontal divider*/
+    hr{
+        margin-top: 30px;
+    }
+/*Body*/
+    .portrait-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: -20px;
+        background-image: none;
+        background-color: none;
+    }
+    .portrait-img{
+        z-index: 2;
+        height: auto;
+        width: auto;
+        position: relative;
+        max-height: 400px;
+    }
+    .portrait-feather{
+        transform-origin: 100% 70%;
+        z-index: 1;
+        position: relative;
+        width: auto;
+        height: auto;
+        max-height: 200px;
+    }
+    #portrait-left-feather{
+        translate: 20% 10px;
+        animation: rotate-left 1s infinite alternate;
+    }
+    #portrait-right-feather{
+        translate: -120% 10px;
+        animation: rotate-right 1s infinite alternate;
+    }
+    @keyframes rotate-left {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(20deg);
+        }
+    }
+    @keyframes rotate-right {
+        from {
+            transform: scaleX(-1) rotate(0deg);
+        }
+        to {
+            transform: scaleX(-1) rotate(20deg);
+        }
+    }
+
+/*Pointer*/
+    #doc-pointer{
+        z-index: 100;/*can be changed for nice animation of cursor going behind something*/
+        position:absolute;
+        background: none;
+        pointer-events: none;
+        transform:translate(-50%,-50%);
+        height: 25px;
+        width: 25px;
+        border-radius:50%;
+        border:2px solid aliceblue;
+    }
