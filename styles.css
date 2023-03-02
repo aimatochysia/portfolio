@@ -1,173 +1,246 @@
-/*setup*/
-    *{
-        margin: 0px;
-        padding: 0px;
-        border: 0px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        cursor: none;
-        /* user-select:none; */
-        font-family: Verdana, Tahoma, sans-serif;
-    }
-    body{
-        background-image: url("lib/title.png");
-        background-color: #121212;
-    }
-    title{
-        display: none;
-    }
-    a{
-        color: inherit;
-        text-decoration: none;
-    }
-    h1{
-            text-decoration: none;
-            font-weight: normal;
-            font-size: larger;
-    }
-
-
-    ::-moz-selection { /* Code for Firefox */
-        color: aliceblue;
-        background: rgba(209, 209, 209,0.1);
-    }
-    ::selection {
+/* base */
+*{
+    cursor: none;
+    background-color: rgba(0,0,0,0);
+}
+body{
+    overflow: hidden;
+    background-color: #121212;
+}
+a{
+    text-decoration: none;
     color: aliceblue;
-    background: rgba(209, 209, 209,0.1);
-    }
+}
+iframe{
+    overflow: hidden;
+}
 
-    ::-webkit-scrollbar {
-        display: none;
-      }
 
-/*nav*/
-    nav{
-        width:100%;
-        /* background-color: #121212; */
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content:space-between;
-        align-items:center;
-        position: sticky;
-        padding: 5px 10px;
-        max-height: 70px;
-    }
-    .nav-logo-container{
-        margin: none;
-        width: 30%;
-        display: flex;
-        align-items:end;
-        flex-direction: row;
-    }
-    #main-nav-logo{
-        min-height: 32px;
-        min-width: 32px;
-        max-width: 60px;
-        max-height: 60px;
-        background: rgba(0, 0, 0, 0);
-    }
-    .nav-title{
-        font-size:larger;
-        padding-bottom: 10px;
-        letter-spacing: 10px;
-        text-align: center;
-        color: aliceblue;
-        transition: all .5s;
-    }
-    .nav-container{
-        padding: 15px 1% 0px 0px;
-    }
-    .main-nav{
-        background:none;
-        font-size: larger;
-        margin: 10px 10px;
-        color:aliceblue;
-        align-items: center;
-        border: 1px transparent solid;
-        padding: 5px 10px 5px 10px;
-        transition: all .2s ease-out;
-    }
+/* nav class */
+.nav-menu li{
+    list-style-type: none;
+    display: inline;
+    padding-left: 1vw;
+}
 
-    /* nav animation */
-        .main-nav:hover,.main-nav:focus{
-            translate: 10px 0px;
-            color: rgb(170, 117, 255);
-            text-shadow: 0px 0px 1px aliceblue;
-        }
+.d-inline-block{
+    vertical-align: center;
+}
 
-        .nav-title:hover,.nav-title:focus{
-            letter-spacing: 2px;
-        }
-        .nav-title:hover h1{
-            display: none;
-        }
-        .nav-title:hover:after{
-            font-size: larger;
-            content: "Petra Michael";
-        }
-/*Horizontal divider*/
-    hr{
-        margin-top: 30px;
-    }
-/*Body*/
-    .portrait-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: -20px;
-        background-image: none;
-        background-color: none;
-    }
-    .portrait-img{
-        z-index: 2;
-        height: auto;
-        width: auto;
-        position: relative;
-        max-height: 400px;
-    }
-    .portrait-feather{
-        transform-origin: 100% 70%;
-        z-index: 1;
-        position: relative;
-        width: auto;
-        height: auto;
-        max-height: 200px;
-    }
-    #portrait-left-feather{
-        translate: 20% 10px;
-        animation: rotate-left 1s infinite alternate;
-    }
-    #portrait-right-feather{
-        translate: -120% 10px;
-        animation: rotate-right 1s infinite alternate;
-    }
-    @keyframes rotate-left {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(20deg);
-        }
-    }
-    @keyframes rotate-right {
-        from {
-            transform: scaleX(-1) rotate(0deg);
-        }
-        to {
-            transform: scaleX(-1) rotate(20deg);
-        }
-    }
+.collapsible{
+    border: 1px aliceblue solid;
+}
+.nav-icons{
+    z-index: 1;
+    max-width: 3vw;
+    max-height: 3vh;
+    margin-right: 1vw;
+    filter: invert(1);
+    background-size: cover;
+}
+.nav-menu li:nth-child(1){
+    background-image: url(lib/icons/home.svg);
+}
+.nav-menu li:nth-child(2){
+    background-image: url(lib/icons/user.svg);
+}
+.nav-menu li:nth-child(3){
+    background-image: url(lib/icons/briefcase.svg);
+}
+.nav-menu li:nth-child(4){
+    background-image: url(lib/icons/phone.svg);
+}
 
-/*Pointer*/
-    #doc-pointer{
-        z-index: 100;/*can be changed for nice animation of cursor going behind something*/
-        position:absolute;
-        background: none;
-        pointer-events: none;
-        transform:translate(-50%,-50%);
-        height: 25px;
-        width: 25px;
-        border-radius:50%;
-        border:2px solid aliceblue;
+.nav-menu .nav-icons:nth-child(1):hover{
+    background-image: url(lib/icons/home-b.svg);
+}
+.nav-menu .nav-icons:nth-child(2):hover{
+    background-image: url(lib/icons/user-b.svg);
+}
+.nav-menu .nav-icons:nth-child(3):hover{
+    background-image: url(lib/icons/briefcase-b.svg);
+}
+.nav-menu .nav-icons:nth-child(4):hover{
+    background-image: url(lib/icons/phone-b.svg);
+}
+.navbar-nav .nav-link {
+    justify-content: center;
+    background-image: linear-gradient(to right, rgba(18,18,18,1) 20%, rgba(18,18,18,.1)), url('lib/img/feather.png');
+    background-size:100% 100%;
+    
+    background-repeat: no-repeat;
+    background-position: 100vw 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.bg-container{
+    overflow: hidden;
+    position: relative;
+    translate: 0 1vw;
+    height: 15vh;
+    z-index: 1;
+    animation: opening 2s ease-out;
+}
+.bg-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.bg-img-div{
+    color: aliceblue;
+}
+.bg-img:nth-child(1){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -14s;
+}
+.bg-img:nth-child(2){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -12s;
+}
+.bg-img:nth-child(3){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -10s;
+}
+.bg-img:nth-child(4){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -8s;
+}
+.bg-img:nth-child(5){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -6s;
+}
+.bg-img:nth-child(6){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -4s;
+}
+.bg-img:nth-child(7){
+    animation: slideBG 14s linear infinite;
+    animation-delay: -2s;
+}
+/*nav events */
+.navbar-nav .nav-link:hover{
+    background-position: 50vw 0;
+}
+
+/* protrait class */
+.portrait-container{
+    padding-left: 7.5vw;
+    display: inline-flex;
+    z-index: 2;
+    animation: opening 2s ease-out;
+}
+#portrait-left-feather{
+    position: relative;
+    z-index: 2;
+    transform-origin: 100% 20%;
+    translate: 50% -10%;
+    animation: rotate-left 2s infinite alternate;
+}
+#portrait-img{
+    position: relative;
+    z-index: 3;
+}
+#portrait-right-feather{
+    position: relative;
+    z-index: 2;
+    transform-origin: 100% 20%;
+    translate: -150% -10%;
+    animation: rotate-right 2s infinite alternate;
+}
+
+/* opening */
+.opening-words{
+    color: aliceblue;
+    text-align: center;
+    align-content: center;
+    animation: opening 2s ease-out;
+    font-size: 1vw;
+}
+.opening-words div{
+    margin-left: 47.5vw;
+    width: 5vw;
+    border: 1px dashed aliceblue;
+}
+.opening-words h2{
+    font-size: 10vw;
+}
+#opening-scroll-img{
+    animation: scrollupdown 2s ease-in-out 2s infinite;
+}
+/* Pointer */
+#doc-pointer{
+    position: absolute;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+    translate: -50% -50%;
+    border-radius: 50%;
+    pointer-events: none;
+    border: 2px aliceblue solid;
+    animation: rotate360 infinite 5s linear;
+}
+
+/* animations */
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
     }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes slideBG {
+    from{
+        transform: translateX(-120%);
+    }
+    to{
+        transform: translateX(60%);
+    }
+}
+@keyframes rotate-left {
+    0% {
+        transform: rotateY(0);
+    }
+    50% {
+        transform: rotateY(85deg);
+    }
+    100% {
+        transform: rotateY(0);
+    }
+}
+@keyframes rotate-right {
+    0% {
+        transform: scaleX(-1)rotateY(0);
+    }
+    50% {
+        transform: scaleX(-1)rotateY(85deg);
+    }
+    100% {
+        transform: scaleX(-1)rotateY(0);
+    }
+}
+@keyframes opening{
+    0%{
+        translate: 0 10vh;
+        opacity: 0;
+    }
+    10%{
+        translate: 0 5vh;
+        opacity: 0;
+    }
+    100%{
+        translate: 0 0;
+        opacity: 1;
+    }
+}
+@keyframes scrollupdown{
+    0%{
+        translate: 0 0vh;
+    }
+    50%{
+        translate: 0 5vh;
+    }
+    100%{
+        translate: 0 0;
+    }
+}

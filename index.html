@@ -6,35 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- css -->
+    <link href="/lib/bootstrap/normalize/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <!-- js -->
-    <script src="app.js"></script>
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="lib/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="lib/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="lib/icons/favicon-16x16.png">
-    <link rel="manifest" href="lib/icons/site.webmanifest">
+    <!-- <link rel="manifest" href="lib/icons/site.webmanifest"> -->
 </head>
 <body>
-    <nav>
-        <div class="nav-logo-container">
-            <img src="lib/img/main-logo.png" id="main-nav-logo" alt="">
-            <a class="nav-title clickable" href="" ><h1>Portfolio</h1></a>
-        </div>
-        <div class="nav-container">
-            <button class="main-nav clickable"><a href="https://google.com">Home</a></button>
-            <button class="main-nav clickable"><a href="https://google.com">Profile</a></button>
-            <button class="main-nav clickable"><a href="https://google.com">Work</a></button>
-            <button class="main-nav clickable"><a href="https://google.com">Contact</a></button>    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- brand -->
+            <a class="navbar-brand" onmouseover="pointerHover()" onmouseout="pointerUnhover()" href="index.html">
+                <img class="d-inline-block align-text-top" src="lib/img/main-logo.png" alt="brand" width="50px" height="50px">
+                PORTOFOLIO
+            </a>
+            <!-- menus -->
+            <!-- collapsible -->
+            <ul class="nav-menu">
+                <li>
+                    <a onmouseover="pointerHover()" onmouseout="pointerUnhover()" href="#"><img class="nav-icons" src="lib/icons/home.svg" alt="">Home</a>
+                </li>
+                <li>
+                    <a onmouseover="pointerHover()" onmouseout="pointerUnhover()" href="#"><img class="nav-icons" src="lib/icons/user.svg" alt="">Profile</a>
+                </li>
+                <li >
+                    <a onmouseover="pointerHover()" onmouseout="pointerUnhover()" href="#"><img class="nav-icons" src="lib/icons/briefcase.svg" alt="">Work</a>
+                </li>
+                <li >
+                    <a onmouseover="pointerHover()" onmouseout="pointerUnhover()" href="#"><img class="nav-icons" src="lib/icons/phone.svg" alt="">Contact</a>   
+                </li>  
+            </ul>
         </div>
     </nav>
     <hr>
-    <div class="portrait-container">
-        <img class="portrait-feather" id="portrait-left-feather" src="lib/img/feather.png" alt="">
-        <img class="portrait-img" src="lib/img/portrait.png" alt="self portrait">
-        <img class="portrait-feather" id="portrait-right-feather" src="lib/img/feather.png" alt="">
+    <div>
+        <div class="bg-container">
+            <img class="bg-img" src="lib/icons/blender.svg">
+            <img class="bg-img" src="lib/icons/c.svg">
+            <img class="bg-img" src="lib/icons/python.svg">
+            <img class="bg-img" src="lib/icons/html5.svg">
+            <img class="bg-img" src="lib/icons/css3.svg">
+            <img class="bg-img" src="lib/icons/bootstrap.svg">
+            <img class="bg-img" src="lib/icons/javascript.svg">
+        </div>
+        <div class="portrait-container">
+            <img id="portrait-left-feather" src="lib/img/feather.png" width="30%">
+            <img id="portrait-img" src="lib/img/portrait.png" width="30%" alt="self portrait">
+            <img id="portrait-right-feather" src="lib/img/feather.png" width="30%">
+        </div>
+        <div class="opening-words">
+            <h2>Welcome</h2>
+            <div id="opening-scroll-img">
+                scroll
+                <img src="lib/icons/arrow.png" width="100%">
+            </div>
+            
+        </div>
     </div>
+    
 
+    <!-- pointer -->
     <div id="doc-pointer"></div>
+    
+    <!-- js --> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </body>
 </html>

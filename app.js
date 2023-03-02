@@ -1,50 +1,35 @@
 //globals
 let sizeIncrement = 20;
-const clickableArea = document.querySelectorAll('.clickable');
-
-
-
+let pointer = document.getElementById('doc-pointer');
+let pointerbase = pointer.clientWidth;
 //function only at event
 //move pointer
 document.addEventListener('mousemove', function(e) {
-    let pointer = document.getElementById('doc-pointer');
     let pointerX = e.pageX;
     let pointerY = e.pageY;
     pointer.style.left = pointerX + 'px';
     pointer.style.top = pointerY + 'px';
 });
-
 //increase size when click
 document.addEventListener('click',function(e){
-    let pointer = document.getElementById('doc-pointer');
-    let pointerX = 0;
-    let pointerY = 0;
-    pointerX = pointer.clientWidth + sizeIncrement;
-    pointerY = pointer.clientHeight + sizeIncrement;
+    let pointerX = pointerbase + sizeIncrement;
     pointer.style.width = pointerX + 'px';
-    pointer.style.height = pointerY + 'px';
+    pointer.style.height = pointerX + 'px';
     setTimeout(() => { 
-        pointerX = pointer.clientWidth  - sizeIncrement;
-        pointerY = pointer.clientHeight - sizeIncrement;
-        pointer.style.width = pointerX + 'px';
-        pointer.style.height = pointerY + 'px';
+        pointer.style.width = pointerbase + 'px';
+        pointer.style.height = pointerbase + 'px';
     }, 100);
 });
 
-function mouseEnter() {
-    let pointer = document.getElementById('doc-pointer');
-    pointer.style.border = '2px solid blue';
+function pointerHover() {
+    pointer.style.border = '2px dashed rgb(189, 189, 189)';
+    let pointerX = pointerbase + sizeIncrement;
+    pointer.style.width = pointerX + 'px';
+    pointer.style.height = pointerX + 'px';
 };
-
-function mouseLeave() {
-    let pointer = document.getElementById('doc-pointer');
+function pointerUnhover() {
     pointer.style.border = '2px solid aliceblue';
-};
-
-for (let i = 0; i < clickableArea.length; i++) {
-
-    //increase size when hovering
-    clickableArea[i].addEventListener('mouseenter',mouseEnter);
-    //decrease size when not hovering
-    clickableArea[i].addEventListener('mouseleave',mouseLeave);
+    pointerX = pointerbase;
+    pointer.style.width = pointerX + 'px';
+    pointer.style.height = pointerX + 'px';
 };
