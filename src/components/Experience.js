@@ -4,9 +4,9 @@ import 'react-vertical-timeline-component/style.min.css';
 import { FaBriefcase } from 'react-icons/fa';
 
 const experiences = [
-  { year: "2020", description: "Started as a Junior Developer at Company X." },
+  { year: "2022", description: "Started as a Junior Developer at Company X." },
   { year: "2021", description: "Promoted to Mid-level Developer at Company Y." },
-  { year: "2022", description: "Senior Developer at Company Z." },
+  { year: "2020", description: "Senior Developer at Company Z." },
 ];
 
 const Experience = () => {
@@ -19,20 +19,20 @@ const Experience = () => {
             key={index}
             className="vertical-timeline-element--work"
             contentStyle={{
-              background: '#212936', // Semi-transparent background
-              backdropFilter: 'blur(10px)', // Apply blur for glassmorphism
-              boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
-              border: '1px solid rgba(255, 255, 255, 0.3)', // Border to match glassmorphism effect
-              color: '#fff' // Text color for contrast
+              background: '#212936', 
+              backdropFilter: 'blur(10px)', 
+              boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', 
+              border: '1px solid rgba(255, 255, 255, 0.3)', 
+              color: '#fff' 
             }}
             contentArrowStyle={{ borderRight: '7px solid rgba(255, 255, 255, 0.3)' }}
             date={exp.year}
             iconStyle={{
-              background: '#212936', // Glassy icon background
+              background: '#212936', 
               backdropFilter: 'blur(10px)',
               boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
               border: '1px solid rgba(255, 255, 255, 0.3)',
-              color: '#fff' // Icon color
+              color: '#fff' 
             }}
             icon={<FaBriefcase />}
           >
