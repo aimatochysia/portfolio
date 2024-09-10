@@ -1,6 +1,6 @@
 import React from 'react';
 
-const hobbies = ["Photography", "Traveling", "Reading", "Gaming"];
+const hobbies = ["Coding", "3D Illustrating", "Creating and Managing Terrarium", "Trading"];
 
 const Hobbies = () => {
   return (
