@@ -11,7 +11,7 @@ const Intro = () => {
         alt="Self Portrait" 
         className="w-64 h-64 rounded-full shadow-lg glassmorphism object-cover"
       />
-      <div className="relative bg-opacity-30 backdrop-blur-md p-6 rounded-lg">
+      <div className="relative bg-opacity-30 glassmorphism backdrop-blur-md p-6 rounded-lg">
         <h1 className="text-4xl font-bold">
           Petra Michael
         </h1>

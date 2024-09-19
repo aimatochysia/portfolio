@@ -84,7 +84,7 @@ const Experience = () => {
                 className="vertical-timeline-element--work"
                 contentStyle={{
                   background: 'rgba(33, 41, 54, 0.2)',
-                  backdropFilter: 'blur(10px)', 
+                  backdropFilter: 'blur(7px)', 
                   boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   color: '#fff'
@@ -93,7 +93,7 @@ const Experience = () => {
                 date={exp.year}
                 iconStyle={{
                   background: 'rgba(33, 41, 54, 0.2)',
-                  backdropFilter: 'blur(10px)',
+                  backdropFilter: 'blur(7px)',
                   boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   color: '#fff'

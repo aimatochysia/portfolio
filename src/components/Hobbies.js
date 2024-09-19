@@ -12,10 +12,9 @@ const Hobbies = () => {
             key={hobby}
             className="px-4 py-2 rounded-lg shadow-lg"
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.2)', 
-              backdropFilter: 'blur(10px)', 
+              backdropFilter: 'blur(7px)', 
               color: '#ffffff', 
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)', 
               borderRadius: '12px',
             }}
           >

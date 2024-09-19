@@ -23,11 +23,10 @@ const Skills = () => {
         {skills.map((skill) => (
           <motion.div
             key={skill.name}
-            className="relative p-2 md:p-4 rounded-lg"
+            className="relative glassmorphism p-2 md:p-4 rounded-lg"
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+              backdropFilter: 'blur(7px)',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
               color: '#ffffff',
               position: 'relative',
               overflow: 'hidden',
@@ -35,7 +34,7 @@ const Skills = () => {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center'
             }}
             whileHover={{
               scale: 1.05,
