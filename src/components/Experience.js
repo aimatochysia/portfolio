@@ -36,7 +36,7 @@ const experienceGroups = [
     {
       year: "June 2023 - May 2024",
       description: "Research Assistant, Binus University",
-      extraDescription: "Assisted in data cleaning of Aerial images and water quality dataset for fishpond's condition monitoring data article paper (https://doi.org/10.1016/j.dib.2023.110009) and submission to ICDXA conference proceedings (https://ieeexplore.ieee.org/xpl/conhome/10470454/proceeding).",
+      extraDescription: "Assisted in data cleaning of Aerial images and water quality dataset for fishpond's condition monitoring data article paper (https://doi.org/10.1016/j.dib.2023.110009) and submission to ICDXA conference proceedings (https://ieeexplore.ieee.org/document/10470473/).",
       icon: "https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/binus.png",
     },
     {
@@ -83,8 +83,8 @@ const Experience = () => {
                 key={index}
                 className="vertical-timeline-element--work"
                 contentStyle={{
-                  background: '#212936',
-                  backdropFilter: 'blur(10px)',
+                  background: 'rgba(33, 41, 54, 0.2)',
+                  backdropFilter: 'blur(10px)', 
                   boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   color: '#fff'
@@ -92,7 +92,7 @@ const Experience = () => {
                 contentArrowStyle={{ borderRight: '7px solid rgba(255, 255, 255, 0.3)' }}
                 date={exp.year}
                 iconStyle={{
-                  background: '#212936',
+                  background: 'rgba(33, 41, 54, 0.2)',
                   backdropFilter: 'blur(10px)',
                   boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -106,14 +106,14 @@ const Experience = () => {
                   {exp.description.includes(',') && exp.description.substring(exp.description.indexOf(','))}
                 </p>
                 {exp.extraDescription && (
-                  <p className="text-sm text-gray-400 mt-2">
+                  <p className="text-sm  mt-2">
                     {processDescriptionWithLinks(exp.extraDescription)}
                   </p>
                 )}
               </VerticalTimelineElement>
             ))}
           </VerticalTimeline>
-          {groupIndex < experienceGroups.length - 1 && <hr className="border-dotted border-t border-gray-400 mt-8 mb-8" />}
+          {groupIndex < experienceGroups.length - 1 && <hr className="border-dotted border-t border-white-800 mt-8 mb-8" />}
         </div>
       ))}
     </div>

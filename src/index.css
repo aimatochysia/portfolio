@@ -8,3 +8,13 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+body{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar { 
+  display: none;
+}

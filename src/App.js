@@ -5,11 +5,14 @@ import Hobbies from './components/Hobbies';
 import Experience from './components/Experience';
 import Publications from './components/Publications';
 import Contact from './components/Contact';
+import BG from './components/BG';
+import './App.css';
 
 function App() {
   return (
-    <div className="font-sans bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      <div className="container mx-auto px-4 py-8">
+    <div className="font-sans text-gray-800 dark:text-gray-200">
+      <BG />
+      <div className="container mx-auto px-4 py-8 relative z-10">
         <Intro />
         <Skills />
         <Hobbies />
