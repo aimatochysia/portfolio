@@ -12,7 +12,7 @@ const Intro = () => {
         className="w-64 h-64 rounded-full shadow-lg glassmorphism object-cover"
       />
       <div className="relative bg-opacity-30 glassmorphism backdrop-blur-md p-6 rounded-lg">
-        <h1 className="text-4xl font-bold">
+        <h1 id="intro" className="text-4xl font-bold">
           Petra Michael
         </h1>
         <p className="text-xl mt-2">

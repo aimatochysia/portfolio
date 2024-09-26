@@ -5,7 +5,7 @@ const hobbies = ["Coding", "3D Illustrating", "Managing Terrarium", "Stock Marke
 const Hobbies = () => {
   return (
     <div className="mb-16">
-      <h2 className="text-3xl font-semibold mb-6">Hobbies</h2>
+      <h2 id="hobbies" className="text-3xl font-semibold mb-6">Hobbies</h2>
       <ul className="flex flex-wrap gap-4">
         {hobbies.map((hobby) => (
           <li

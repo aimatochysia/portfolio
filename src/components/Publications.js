@@ -8,7 +8,7 @@ const publications = [
 const Publications = () => {
   return (
     <div className="mb-16">
-      <h2 className="text-3xl font-semibold mb-6">Publications</h2>
+      <h2 id="publications" className="text-3xl font-semibold mb-6">Publications</h2>
       <ul className="space-y-4">
         {publications.map((pub, index) => (
           <li key={index} className="px-4 py-2 border border-white/80 rounded-lg shadow-lg glassmorphism transform hover:scale-105 transition-transform duration-300">

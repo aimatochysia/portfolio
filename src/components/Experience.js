@@ -74,7 +74,7 @@ const processDescriptionWithLinks = (text) => {
 const Experience = () => {
   return (
     <div className="mb-16">
-      <h2 className="text-3xl font-semibold mb-6">Past Experiences</h2>
+      <h2 id="experience" className="text-3xl font-semibold mb-6">Past Experiences</h2>
       {experienceGroups.map((experienceList, groupIndex) => (
         <div key={groupIndex} className="mb-10">
           <VerticalTimeline>

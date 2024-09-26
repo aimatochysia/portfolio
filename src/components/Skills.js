@@ -18,7 +18,7 @@ const skills = [
 const Skills = () => {
   return (
     <div id="skills-section" className="mb-16">
-      <h2 className="text-3xl font-semibold mb-6">Top Skills</h2>
+      <h2 id="skills" className="text-3xl font-semibold mb-6">Top Skills</h2>
       <div className="grid grid-cols-3 gap-4">
         {skills.map((skill) => (
           <motion.div
