@@ -74,7 +74,7 @@ const processDescriptionWithLinks = (text) => {
 const Experience = () => {
   return (
     <div className="mb-16">
-      <h2 id="experience" className="text-3xl font-semibold mb-6">Past Experiences</h2>
+      <h2 id="experience" className="text-3xl mb-6">Past Experiences</h2>
       {experienceGroups.map((experienceList, groupIndex) => (
         <div key={groupIndex} className="mb-10">
           <VerticalTimeline>
@@ -100,7 +100,7 @@ const Experience = () => {
                 }}
                 icon={exp.icon ? <img src={exp.icon} alt="icon" style={{ width: '100%', height: '100%', borderRadius: '50%' }} /> : <FaBriefcase />}
               >
-                <h3 className="text-xl font-semibold">{exp.year}</h3>
+                <h3 className="text-xl ">{exp.year}</h3>
                 <p>
                   <strong>{exp.description.split(',')[0]}</strong>
                   {exp.description.includes(',') && exp.description.substring(exp.description.indexOf(','))}

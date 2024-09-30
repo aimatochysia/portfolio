@@ -15,6 +15,8 @@ const Hobbies = () => {
               backdropFilter: 'blur(7px)', 
               color: '#ffffff', 
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)', 
+              border:'1px solid',
+              borderColor:'rgba(240,255,255,0.5)',
               borderRadius: '12px',
             }}
           >

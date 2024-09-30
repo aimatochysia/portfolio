@@ -19,7 +19,7 @@ const Intro = () => {
           Hi👋, I'm Petra Michael, a versatile programmer experienced in:
         </p>
         <p className="text-xl mt-2">
-          AI research, Software Engineering, Data Science, and Full-Stack Development.
+          Deep Learning, Software Engineering, Data Science, and Full-Stack Development.
         </p>
       </div>
     </div>

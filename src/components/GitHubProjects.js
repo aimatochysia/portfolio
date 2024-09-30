@@ -43,20 +43,20 @@ const GitHubProjects = () => {
       'https://raw.githubusercontent.com/aimatochysia/steam-workshop-subscriber-count/main/subscriber_count.csv'
     ).then((data) => {
       const filteredData = data.map((row) => +row['3238355078']).filter((value) => !isNaN(value));
-      setSubscriberData(filteredData);
+      const gains = filteredData.map((value, index) => 
+        index === 0 ? 0 : value - filteredData[index - 1]
+      );
+      setSubscriberData(gains);
     });
   }, []);
 
   const renderGraph = (data) => {
     if (data.length === 0) return null;
-
     const width = 200;
     const height = 100;
     const margin = { top: 20, right: 10, bottom: 30, left: 30 };
-
     const xScale = d3.scaleLinear().domain([1, data.length]).range([margin.left, width - margin.right]);
-    const yScale = d3.scaleLinear().domain([0, d3.max(data)]).range([height - margin.bottom, margin.top]);
-
+    const yScale = d3.scaleLinear().domain([d3.min(data), d3.max(data)]).range([height - margin.bottom, margin.top]);
     const lineGenerator = d3
       .line()
       .x((d, i) => xScale(i + 1))
@@ -64,37 +64,82 @@ const GitHubProjects = () => {
       .curve(d3.curveMonotoneX);
 
     const lineData = lineGenerator(data);
+    const xTickValues = d3.range(1, data.length + 1, Math.ceil(data.length / 5));
+    const yTickValues = yScale.ticks(5);
 
     return (
       <svg width={width} height={height}>
         <g>
-          <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#e0e0e0" />
-          <line x1={margin.left} y1={margin.top} x2={margin.left} y2={height - margin.bottom} stroke="#e0e0e0" />
-          {yScale.ticks(5).map((tick) => (
+          <line
+            x1={margin.left}
+            y1={height - margin.bottom}
+            x2={width - margin.right}
+            y2={height - margin.bottom}
+            stroke="#e0e0e0"
+          />
+          <line
+            x1={margin.left}
+            y1={margin.top}
+            x2={margin.left}
+            y2={height - margin.bottom}
+            stroke="#e0e0e0"
+          />
+          {yTickValues.map((tick) => (
             <g key={tick} transform={`translate(0,${yScale(tick)})`}>
-              <line x1={margin.left} x2={margin.left + 5} stroke="#e0e0e0" />
-              <text x={margin.left - 5} y={5} textAnchor="end" fill="#ccc" fontSize="10">
+              <line x1={margin.left} x2={width - margin.right} stroke="#e0e0e0" />
+              <text
+                x={margin.left - 5}
+                y={5}
+                textAnchor="end"
+                fill="#ccc"
+                fontSize="10"
+              >
                 {tick}
               </text>
             </g>
           ))}
-          {xScale.ticks(data.length).map((tick) => (
+          {xTickValues.map((tick) => (
             <g key={tick} transform={`translate(${xScale(tick)},0)`}>
-              <line y1={height - margin.bottom} y2={height - margin.bottom + 5} stroke="#e0e0e0" />
-              <text y={height - margin.bottom + 15} x={0} textAnchor="middle" fill="#ccc" fontSize="10">
+              <line
+                y1={height - margin.bottom}
+                y2={height - margin.bottom + 5}
+                stroke="#e0e0e0"
+              />
+              <text
+                y={height - margin.bottom + 15}
+                x={0}
+                textAnchor="middle"
+                fill="#ccc"
+                fontSize="10"
+              >
                 {tick}
               </text>
             </g>
           ))}
         </g>
-        <path d={lineData} fill="none" stroke="#00f" strokeWidth="2" />
+        <path d={lineData} fill="none" stroke="#f00" strokeWidth="2" />
         <g>
           {data.map((d, i) => (
             <circle key={i} cx={xScale(i + 1)} cy={yScale(d)} r="3" fill="#f00" />
           ))}
         </g>
-        <text x={width / 2} y={height - 5} textAnchor="middle" fill="#ccc" fontSize="10">Day by Day</text>
-        <text transform={`translate(5, ${height / 2}) rotate(-90)`} textAnchor="middle" fill="#ccc" fontSize="10">Subscribers</text>
+        <text
+          x={width / 2}
+          y={height - 5}
+          textAnchor="middle"
+          fill="#ccc"
+          fontSize="10"
+        >
+          Day by day
+        </text>
+        <text
+          transform={`translate(5, ${height / 2}) rotate(-90)`}
+          textAnchor="middle"
+          fill="#ccc"
+          fontSize="10"
+        >
+          Daily Gain
+        </text>
       </svg>
     );
   };
