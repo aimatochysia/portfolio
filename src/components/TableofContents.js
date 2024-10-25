@@ -42,7 +42,6 @@ const TableofContents = () => {
           transition: 'top 0.3s ease',
         }}
       >
-        {/* Left side: Logo and button */}
         <div className="flex items-center space-x-4">
           <a href="#intro-section" style={{ display: 'inline-flex' }}>
             <img 
@@ -59,23 +58,25 @@ const TableofContents = () => {
 
           <button 
             className="glassmorphism-button"
+            href="https://raw.githubusercontent.com/aimatochysia/portfolio/main/public/CV/Curriculum%20Vitae.pdf"
             style={{
               borderRadius: '12px',
               fontSize: '2vh',
               fontWeight: 'bold',
-              border: '2px solid transparent',
+              border: '2px solid',
+              borderColor:'rgba(255,255,255,0.2)',
               cursor: 'pointer',
               transition: 'border 0.4s ease',
               color: '#fff',
               padding: '1vh 1.5vw',
               whiteSpace: 'nowrap'
+              
             }}
           >
             Get CV
           </button>
         </div>
 
-        {/* Hamburger Menu */}
         <button 
           className="hamburger md:hidden" 
           onClick={() => setMenuOpen(!menuOpen)}
@@ -89,10 +90,9 @@ const TableofContents = () => {
             marginLeft: 'auto'
           }}
         >
-          &#9776; {/* Unicode for hamburger icon */}
+          &#9776;
         </button>
 
-        {/* Link container for larger screens */}
         <div className="hidden md:flex space-x-4">
           {links.map(link => (
             <a 
@@ -110,12 +110,11 @@ const TableofContents = () => {
         </div>
       </nav>
 
-      {/* Dropdown Links */}
       {menuOpen && (
         <div 
           className="dropdown fixed w-full flex flex-col items-center space-y-4 p-4 z-50"
           style={{
-            top: '60px', // Position slightly below the nav bar
+            top: '60px',
             left: 0,
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             backdropFilter: 'blur(10px)',
