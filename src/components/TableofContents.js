@@ -56,25 +56,26 @@ const TableofContents = () => {
             />
           </a>
 
-          <button 
-            className="glassmorphism-button"
-            href="https://raw.githubusercontent.com/aimatochysia/portfolio/main/public/CV/Curriculum%20Vitae.pdf"
-            style={{
-              borderRadius: '12px',
-              fontSize: '2vh',
-              fontWeight: 'bold',
-              border: '2px solid',
-              borderColor:'rgba(255,255,255,0.2)',
-              cursor: 'pointer',
-              transition: 'border 0.4s ease',
-              color: '#fff',
-              padding: '1vh 1.5vw',
-              whiteSpace: 'nowrap'
-              
-            }}
-          >
-            Get CV
-          </button>
+          <a href='https://raw.githubusercontent.com/aimatochysia/portfolio/main/public/CV/Curriculum%20Vitae.pdf'>
+            <button 
+              className="glassmorphism-button"
+              style={{
+                borderRadius: '12px',
+                fontSize: '2vh',
+                fontWeight: 'bold',
+                border: '2px solid',
+                borderColor:'rgba(255,255,255,0.2)',
+                cursor: 'pointer',
+                transition: 'border 0.4s ease',
+                color: '#fff',
+                padding: '1vh 1.5vw',
+                whiteSpace: 'nowrap'
+                
+              }}
+            >
+              Get CV
+            </button>
+          </a>
         </div>
 
         <button 
