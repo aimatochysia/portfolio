@@ -7,6 +7,7 @@ import Publications from './components/Publications';
 import Contact from './components/Contact';
 import GitHubProjects from './components/GitHubProjects';
 import TableofContents from './components/TableofContents';
+import Certification from './components/Certification';
 import BG from './components/BG';
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
         <Experience />
         <GitHubProjects />
         <Publications />
+        <Certification/>
         <Contact />
       </div>
     </div>

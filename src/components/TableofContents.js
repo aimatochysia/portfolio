@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 const TableofContents = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
-  const [isTallScreen, setIsTallScreen] = useState(window.innerHeight > window.innerWidth);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef(null);
 
   const handleScroll = () => {
@@ -13,35 +13,27 @@ const TableofContents = () => {
     setIsAtTop(navOffsetTop > -10);
   };
 
-  const handleResize = () => {
-    setIsTallScreen(window.innerHeight > window.innerWidth);
-  };
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const links = [
-    { href: "#intro", full: "Intro", short: "Intro" },
-    { href: "#skills", full: "Skills", short: "Skills" },
-    { href: "#hobbies", full: "Hobbies", short: "Hobbies" },
-    { href: "#experience", full: "Experience", short: "Exp..." },
-    { href: "#projects", full: "GitHub Projects", short: "Projects" },
-    { href: "#publications", full: "Publications", short: "Pubs..." },
-    { href: "#contact", full: "Contact", short: "Contact" },
+    { href: "#intro", full: "Intro", short: "Int.." },
+    { href: "#skills", full: "Skills", short: "Skil.." },
+    { href: "#hobbies", full: "Hobbies", short: "Hob.." },
+    { href: "#experience", full: "Experience", short: "Exp.." },
+    { href: "#projects", full: "GitHub Projects", short: "Pro.." },
+    { href: "#publications", full: "Publications", short: "Pub.." },
+    { href: "#certification", full: "Certifications", short: "Cer.." },
+    { href: "#contact", full: "Contact", short: "Con.." },
   ];
 
   return (
-    <div ref={navRef}>
+    <div ref={navRef} className="relative">
       <h2 className="text-3xl font-semibold mb-6">Table of Contents</h2>
       <nav 
-        className={`flex items-center justify-between space-x-4 p-4 rounded-md ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : (isAtTop ? '' : 'absolute')}`} 
+        className={`flex items-center justify-between p-4 rounded-md ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : (isAtTop ? '' : 'absolute')}`} 
         style={{
           backdropFilter: 'blur(7px)', 
           color: '#ffffff', 
@@ -50,26 +42,148 @@ const TableofContents = () => {
           transition: 'top 0.3s ease',
         }}
       >
-        <a href="#intro-section">
-          <img 
-            src="https://github.com/aimatochysia/portfolio/raw/main/public/logos/logo192.png"
-            alt="Logo"
-            className="h-10 w-auto mr-4"
-          />
-        </a>
+        {/* Left side: Logo and button */}
+        <div className="flex items-center space-x-4">
+          <a href="#intro-section" style={{ display: 'inline-flex' }}>
+            <img 
+              src="https://github.com/aimatochysia/portfolio/raw/main/public/logos/logo192.png"
+              alt="Logo"
+              className="logo"
+              style={{
+                objectFit: 'contain',
+                width: '2vw',
+                height: 'auto',
+              }}
+            />
+          </a>
 
-        <div className="flex justify-center space-x-4">
+          <button 
+            className="glassmorphism-button"
+            style={{
+              borderRadius: '12px',
+              fontSize: '2vh',
+              fontWeight: 'bold',
+              border: '2px solid transparent',
+              cursor: 'pointer',
+              transition: 'border 0.4s ease',
+              color: '#fff',
+              padding: '1vh 1.5vw',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Get CV
+          </button>
+        </div>
+
+        {/* Hamburger Menu */}
+        <button 
+          className="hamburger md:hidden" 
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            border: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+            padding: '0',
+            fontSize: '2vh',
+            color: '#ffffff',
+            marginLeft: 'auto'
+          }}
+        >
+          &#9776; {/* Unicode for hamburger icon */}
+        </button>
+
+        {/* Link container for larger screens */}
+        <div className="hidden md:flex space-x-4">
           {links.map(link => (
             <a 
               key={link.href} 
               href={link.href} 
-              className="text-sm md:text-base lg:text-lg text-white-500 hover:underline"
+              className="text-base hover:underline"
+              style={{
+                fontSize: '2vh',
+                color: '#ffffff',
+              }}
             >
-              {isTallScreen ? link.short : link.full}
+              {link.full}
             </a>
           ))}
         </div>
       </nav>
+
+      {/* Dropdown Links */}
+      {menuOpen && (
+        <div 
+          className="dropdown fixed w-full flex flex-col items-center space-y-4 p-4 z-50"
+          style={{
+            top: '60px', // Position slightly below the nav bar
+            left: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
+            borderRadius: '12px',
+            transition: 'opacity 0.3s ease, transform 0.3s ease',
+            opacity: menuOpen ? 1 : 0,
+            transform: menuOpen ? 'translateY(0)' : 'translateY(-10px)',
+          }}
+        >
+          {links.map(link => (
+            <a 
+              key={link.href} 
+              href={link.href} 
+              className="text-base hover:underline"
+              style={{
+                fontSize: '2vh',
+                padding: '0.5vh 0',
+                color: '#ffffff',
+              }}
+            >
+              {link.full}
+            </a>
+          ))}
+        </div>
+      )}
+
+      <style jsx>{`
+        .glassmorphism-button {
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .glassmorphism-button::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #ffffff;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.4s ease;
+        }
+
+        .glassmorphism-button:hover::before {
+          transform: scaleX(1);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+          .dropdown {
+            display: ${menuOpen ? 'flex' : 'none'};
+            position: fixed;
+            top: 60px;
+            width: 100%;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .hamburger {
+            display: none;
+          }
+        }
+      `}</style>
     </div>
   );
 };

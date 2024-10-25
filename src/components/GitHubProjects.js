@@ -14,7 +14,7 @@ const githubProjects = [
   },
   {
     title: "Wallpaper Engine Coding Wallpaper",
-    description: "Wallpaper engine's wallpaper with coding background, available with several language selections. With this daily live subscriber below:",
+    description: "Wallpaper engine's wallpaper with coding background, available with several language selections. With this daily live subscribers gain below:",
     link: "https://github.com/aimatochysia/Wallpaper-Engine-Code-Clock",
     graph: true,
   },
