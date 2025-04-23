@@ -16,12 +16,17 @@ const Intro = () => {
           Petra Michael
         </h1>
         <p className='text-xl mt-2'>
-          Hi👋, I'm Petra Michael, a versatile Software Developer experienced
-          in:
+          I'm a Computer Science student at BINUS University in Bandung,
+          Indonesia, currently interning at IDEMIA as a Software Development
+          Engineering Intern.
         </p>
         <p className='text-xl mt-2'>
-          Deep Learning, Software Engineering, Automation Test Engineering, Data
-          Science, and Full-Stack Development.
+          At IDEMIA, I focus on writing and executing test cases, particularly
+          involving FIDO2 authentication protocols and APDU command sets. My
+          interests span across Deep Learning, Software Engineering, Automation
+          Testing, Data Science, and Full-Stack Development. I'm passionate
+          about building secure, scalable, and efficient systems that bridge the
+          gap between theory and real-world application.
         </p>
       </div>
     </div>
