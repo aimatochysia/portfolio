@@ -6,13 +6,13 @@ const githubProjects = [
     title: 'Indonesian Stock Screener',
     description:
       'Screen Indonesian stocks based on SMAs, volatility, and volumes that update daily automatically',
-    link: 'https://github.com/aimatochysia/stock-downloader'
+    link: 'https://github.com/aimatochysia/stock-screener'
   },
   {
-    title: 'Discord Active Apps RPC',
+    title: 'FicBatch - Archive of Our Own Batch Mobile Downloader and Reader',
     description:
-      'Show off currently active apps that also selects appropriate GIF / logo for the banner on Discord',
-    link: 'https://github.com/aimatochysia/discord-rpc'
+      'Mobile app for downloading multiple and reading Archive of Our Own fanfictions on mobile devices',
+    link: 'https://github.com/aimatochysia/FicBatch'
   },
   {
     title: 'Wallpaper Engine Coding Wallpaper',
@@ -22,23 +22,23 @@ const githubProjects = [
     graph: true
   },
   {
-    title: 'Fullstack Indonesian Ship Watch Webapp',
+    title: 'Pinoted',
     description:
-      'A mockup of Indonesian Ship Watch utilizing Global Fishing Watch API, with postgreSQL user database complete with secure login and signup form',
-    link: 'https://github.com/aimatochysia/Illegal-Maritime-Activities-System'
-  },
-  {
-    title: 'FicBatch - Archive of Our Own Batch Mobile Downloader and Reader',
-    description:
-      'Mobile app for downloading multiple and reading Archive of Our Own fanfictions on mobile devices',
-    link: 'https://github.com/aimatochysia/FicBatch'
+      'Pinoted is a note-taking application that allows you to create sticky notes that stay on your screen.',
+    link: 'https://github.com/aimatochysia/pinoted'
   },
   {
     title: 'Web Color Picker',
     description:
       'A simple color picker chrome extension for getting color RGB / HEX code fast',
     link: 'https://github.com/aimatochysia/color-picker-extension'
-  }
+  },
+  {
+  title: 'Discord Active Apps RPC',
+  description:
+      'Show off currently active apps that also selects appropriate GIF / logo for the banner on Discord',
+  link: 'https://github.com/aimatochysia/discord-rpc'
+  },
 ]
 
 const GitHubProjects = () => {
