@@ -3,16 +3,22 @@ import * as d3 from 'd3'
 
 const githubProjects = [
   {
-    title: 'Indonesian Stock Screener',
+    title: 'Q-SafeVault',
     description:
-      'Screen Indonesian stocks based on SMAs, volatility, and volumes that update daily automatically',
-    link: 'https://github.com/aimatochysia/stock-screener'
+      'Post-quantum zero-trust, self-hostable password manager backed by TPM (if supported) and HSM (enterprise). Uses only FIPS/NIST recommended algorithms. Cross-platform: Linux, macOS, iOS, Android, Windows.',
+    link: 'https://github.com/aimatochysia/qsafevault'
   },
   {
     title: 'FicBatch - Archive of Our Own Batch Mobile Downloader and Reader',
     description:
       'Mobile app for downloading multiple and reading Archive of Our Own fanfictions on mobile devices',
     link: 'https://github.com/aimatochysia/FicBatch'
+  },
+  {
+    title: 'Indonesian Stock Screener',
+    description:
+      'Screen Indonesian stocks based on SMAs, volatility, and volumes that update daily automatically',
+    link: 'https://github.com/aimatochysia/stock-screener'
   },
   {
     title: 'Wallpaper Engine Coding Wallpaper',
@@ -32,12 +38,6 @@ const githubProjects = [
     description:
       'A simple color picker chrome extension for getting color RGB / HEX code fast',
     link: 'https://github.com/aimatochysia/color-picker-extension'
-  },
-  {
-    title: 'Q-SafeVault',
-    description:
-      'Post-quantum zero-trust, self-hostable password manager backed by TPM (if supported) and HSM (enterprise). Uses only FIPS/NIST recommended algorithms. Cross-platform: Linux, macOS, iOS, Android, Windows.',
-    link: 'https://github.com/aimatochysia/qsafevault'
   },
 ]
 

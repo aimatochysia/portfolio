@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { motion, AnimatePresence } from 'framer-motion';
 import 'react-vertical-timeline-component/style.min.css';
 
 const certificationGroups = [
@@ -29,38 +30,29 @@ const certificationGroups = [
 
 const Certification = () => {
   const [selectedCert, setSelectedCert] = useState(null);
-  const [isImageEnlarged, setIsImageEnlarged] = useState(false);
+
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedCert]);
 
   const handleImageClick = (cert) => {
     setSelectedCert(cert);
-    setIsImageEnlarged(true);
   };
 
   const handleOverlayClick = () => {
-    setIsImageEnlarged(false);
     setSelectedCert(null);
   };
 
   return (
     <div className="mb-16">
       <style>{`
-        .transition-opacity {
-          transition: opacity 0.3s ease-in-out;
-        }
-        .transition-transform {
-          transition: transform 0.5s ease-in-out;
-        }
-        .scale-0 {
-          transform: scale(0);
-        }
-        .scale-100 {
-          transform: scale(1);
-        }
-        .zoomed-image {
-          object-fit: contain; /* Maintain aspect ratio */
-          max-width: 100%;
-          max-height: 100%;
-        }
         /* Hide the vertical timeline element icon */
         .vertical-timeline-element-icon.bounce-in {
           display: none;
@@ -89,7 +81,7 @@ const Certification = () => {
               >
                 <div className="flex items-start">
                   <div className="mr-4">
-                    <img src={cert.icon} alt="icon" className="w-20 h-20 rounded-lg cursor-pointer" onClick={() => handleImageClick(cert)} />
+                    <img src={cert.icon} alt="icon" className="w-20 h-20 rounded-lg cursor-pointer hover:scale-105 transition-transform duration-200" onClick={() => handleImageClick(cert)} />
                   </div>
                   <div>
                     <h3 className="text-xl">{cert.year}</h3>
@@ -106,13 +98,33 @@ const Certification = () => {
         </div>
       ))}
 
-      {selectedCert && (
-        <div className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 transition-opacity duration-300 ${isImageEnlarged ? 'opacity-100' : 'opacity-0'}`} onClick={handleOverlayClick}>
-          <div className={`transition-transform duration-500 ${isImageEnlarged ? 'scale-100' : 'scale-0'} w-[80vw] h-[80vh] flex items-center justify-center`}>
-            <img src={selectedCert.icon} alt="icon" className="zoomed-image rounded-lg" />
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div 
+            className="fixed inset-0 bg-black/80 backdrop-blur-md flex justify-center items-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={handleOverlayClick}
+          >
+            <motion.div 
+              className="w-[80vw] h-[80vh] flex items-center justify-center"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <img 
+                src={selectedCert.icon} 
+                alt="Certificate" 
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-pointer" 
+                onClick={handleOverlayClick}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
