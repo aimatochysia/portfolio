@@ -4,17 +4,17 @@ const publications = [
   {
     title: "Pending Publication - Ai Usage in Methodological Finding of Chest X-Ray Abnormalities and Respiratory Disease",
     link: "https://docs.google.com/document/d/1ldRoRRxRz9ph8bmy1dLY7EQV_0L_nKH3SaLkskXBSEQ/edit?usp=sharing",
-    image: "https://github.com/aimatochysia/portfolio/raw/main/public/publications_preview/1.png"
+    image: process.env.PUBLIC_URL + "/publications_preview/1.png"
   },
   {
     title: "Data Article - Aerial images and water quality dataset for fishpond's condition monitoring",
     link: "https://doi.org/10.1016/j.dib.2023.110009",
-    image: "https://github.com/aimatochysia/portfolio/raw/main/public/publications_preview/2.png"
+    image: process.env.PUBLIC_URL + "/publications_preview/2.png"
   },
   {
     title: "Conference Paper - Investigation on Correlation of Water Quality Data with Aerial Images",
     link: "https://doi.org/10.1109/ICDXA61007.2024.10470473",
-    image: "https://github.com/aimatochysia/portfolio/raw/main/public/publications_preview/3.png"
+    image: process.env.PUBLIC_URL + "/publications_preview/3.png"
   },
 ];
 

@@ -45,18 +45,19 @@ const TableofContents = () => {
         <div className="flex items-center space-x-4">
           <a href="#intro-section" style={{ display: 'inline-flex' }}>
             <img 
-              src="https://github.com/aimatochysia/portfolio/raw/main/public/logos/logo192.png"
+              src={process.env.PUBLIC_URL + '/logos/logo192.png'}
               alt="Logo"
               className="logo"
               style={{
                 objectFit: 'contain',
-                width: '2vw',
+                width: '32px',
                 height: 'auto',
+                minWidth: '24px',
               }}
             />
           </a>
 
-          <a href='https://raw.githubusercontent.com/aimatochysia/portfolio/main/public/CV/Curriculum%20Vitae.pdf'>
+          <a href={process.env.PUBLIC_URL + '/CV/Curriculum%20Vitae.pdf'}>
             <button 
               className="glassmorphism-button"
               style={{

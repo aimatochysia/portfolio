@@ -13,7 +13,7 @@ const experienceGroups = [
       description: 'Software Development Engineering Intern, at IDEMIA',
       extraDescription:
         'Internship in the Software Development Engineering team, focusing on writing automated software development testing and QA testing.',
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/idemia.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/idemia.png'
     }
   ],
   [
@@ -22,14 +22,14 @@ const experienceGroups = [
       description: 'Academic Events Manager, at HIMTI Binus University',
       extraDescription:
         'Responsible for organizing and managing academic events under the association.',
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/himti.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/himti.png'
     },
     {
       year: 'February 2023 - January 2024',
       description: 'Programming Class Division, at HIMTI Binus University',
       extraDescription:
         'Member of the programming class initiation committee and tutorials for students and outsider.',
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/himti.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/himti.png'
     }
   ],
   [
@@ -38,14 +38,14 @@ const experienceGroups = [
       description: 'Regional Treasurer, at Nippon Club Binus University',
       extraDescription:
         "Managed club's budget, financial activities, and writing monthly report on the financial situation.",
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/nippon.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/nippon.png'
     },
     {
       year: 'February 2023 - January 2024',
       description: 'Support Division, at Nippon Club Binus University',
       extraDescription:
         'Provided logistical and operational support to club activities.',
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/nippon.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/nippon.png'
     }
   ],
   [
@@ -54,14 +54,14 @@ const experienceGroups = [
       description: 'Research Assistant, Binus University',
       extraDescription:
         "Assisted in data cleaning of Aerial images and water quality dataset for fishpond's condition monitoring data article paper (https://doi.org/10.1016/j.dib.2023.110009) and submission to ICDXA conference proceedings (https://ieeexplore.ieee.org/document/10470473/).",
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/binus.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/binus.png'
     },
     {
       year: 'May 2023 - April 2024',
       description: 'Website Manager, Binus University',
       extraDescription:
         'Managed and updated the Indonesian Entrepreneurship Study Program Association website (apski.net), a consortium of entrepreneurship-focused universities.',
-      icon: 'https://github.com/aimatochysia/portfolio/raw/main/public/experiences_icons/binus.png'
+      icon: process.env.PUBLIC_URL + '/experiences_icons/binus.png'
     }
   ]
 ]
@@ -108,6 +108,7 @@ const Experience = () => {
               <VerticalTimelineElement
                 key={index}
                 className='vertical-timeline-element--work'
+                visible={true}
                 contentStyle={{
                   background: 'rgba(33, 41, 54, 0.2)',
                   backdropFilter: 'blur(7px)',

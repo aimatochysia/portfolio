@@ -1,77 +1,64 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { image } from 'd3'
 
 const skills = [
   {
     name: 'Python',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/python.png',
+    image: process.env.PUBLIC_URL + '/app_icons/python.png',
     color: '#4e7aa9'
   },
   {
     name: 'Flask',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/flask.png',
+    image: process.env.PUBLIC_URL + '/app_icons/flask.png',
     color: '#f3f3f3'
   },
   {
     name: 'C/C++',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/cpp.png',
+    image: process.env.PUBLIC_URL + '/app_icons/cpp.png',
     color: '#19427c'
   },
   {
     name: 'Tailwind CSS',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/tailwind.png',
+    image: process.env.PUBLIC_URL + '/app_icons/tailwind.png',
     color: '#62b9f3'
   },
   {
     name: 'JavaScript',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/javascript.png',
+    image: process.env.PUBLIC_URL + '/app_icons/javascript.png',
     color: '#F7DF1E'
   },
   {
     name: 'React-JS/Native',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/react.png',
+    image: process.env.PUBLIC_URL + '/app_icons/react.png',
     color: '#7facc9'
   },
   {
     name: 'Node-JS',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/node.png',
+    image: process.env.PUBLIC_URL + '/app_icons/node.png',
     color: '#97bf57'
   },
   {
     name: 'Express-JS',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/express.png',
+    image: process.env.PUBLIC_URL + '/app_icons/express.png',
     color: '#ffffff'
   },
   {
     name: 'Java',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/java.png',
+    image: process.env.PUBLIC_URL + '/app_icons/java.png',
     color: '#e99d3e'
   },
   {
     name: 'PostgreSQL',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/postgresql.png',
+    image: process.env.PUBLIC_URL + '/app_icons/postgresql.png',
     color: '#3f668d'
   },
   {
     name: 'APDU Protocol',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/apdu.png'
+    image: process.env.PUBLIC_URL + '/app_icons/apdu.png'
   },
   {
     name: 'Blender 3D',
-    image:
-      'https://github.com/aimatochysia/portfolio/raw/main/public/app_icons/blender.png',
+    image: process.env.PUBLIC_URL + '/app_icons/blender.png',
     color: '#db7d2d'
   }
 ]

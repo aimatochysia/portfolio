@@ -7,7 +7,7 @@ const Intro = () => {
       className='flex flex-col items-center text-center space-y-4 mb-16 relative'
     >
       <img
-        src='https://github.com/aimatochysia/portfolio/raw/main/public/images/self_portrait.png'
+        src={process.env.PUBLIC_URL + '/images/self_portrait.png'}
         alt='Self Portrait'
         className='w-64 h-64 rounded-full shadow-lg glassmorphism object-cover'
       />

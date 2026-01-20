@@ -47,15 +47,21 @@ const GitHubProjects = () => {
   useEffect(() => {
     d3.csv(
       'https://raw.githubusercontent.com/aimatochysia/steam-workshop-subscriber-count/main/subscriber_count.csv'
-    ).then(data => {
-      const filteredData = data
-        .map(row => +row['3238355078'])
-        .filter(value => !isNaN(value))
-      const gains = filteredData.map((value, index) =>
-        index === 0 ? 0 : value - filteredData[index - 1]
-      )
-      setSubscriberData(gains)
-    })
+    )
+      .then(data => {
+        const filteredData = data
+          .map(row => +row['3238355078'])
+          .filter(value => !isNaN(value))
+        const gains = filteredData.map((value, index) =>
+          index === 0 ? 0 : value - filteredData[index - 1]
+        )
+        setSubscriberData(gains)
+      })
+      .catch(error => {
+        console.warn('Could not load subscriber data:', error)
+        // Set some sample data as fallback
+        setSubscriberData([5, 12, 8, 15, 10, 18, 7, 20, 14, 9])
+      })
   }, [])
 
   const renderGraph = data => {

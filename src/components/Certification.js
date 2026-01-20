@@ -7,22 +7,22 @@ const certificationGroups = [
     {
       year: "September 2023",
       description: "Sololearn SQL Lang",
-      icon: "https://github.com/aimatochysia/portfolio/raw/main/public/certification/SQL.jpg",
+      icon: process.env.PUBLIC_URL + "/certification/SQL.jpg",
     },
     {
       year: "February 2023",
       description: "Sololearn CSS Lang",
-      icon: "https://github.com/aimatochysia/portfolio/raw/main/public/certification/CSS.jpg",
+      icon: process.env.PUBLIC_URL + "/certification/CSS.jpg",
     },
     {
       year: "November 2022",
       description: "Sololearn HTML",
-      icon: "https://github.com/aimatochysia/portfolio/raw/main/public/certification/HTML.jpg",
+      icon: process.env.PUBLIC_URL + "/certification/HTML.jpg",
     },
     {
       year: "November 2022",
       description: "Sololearn C Lang",
-      icon: "https://github.com/aimatochysia/portfolio/raw/main/public/certification/C.jpg",
+      icon: process.env.PUBLIC_URL + "/certification/C.jpg",
     },
   ],
 ];
@@ -75,6 +75,7 @@ const Certification = () => {
               <VerticalTimelineElement
                 key={index}
                 className="vertical-timeline-element--work cursor-pointer"
+                visible={true}
                 contentStyle={{
                   background: 'rgba(33, 41, 54, 0.2)',
                   backdropFilter: 'blur(7px)',
