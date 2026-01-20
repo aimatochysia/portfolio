@@ -1,10 +1,32 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SPEED_SCALE = 50;
 const NUM_ASTEROIDS = 200;  
 
-function BG() {
+function BG({ onLoadingComplete }) {
   const canvasRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+
+  useEffect(() => {
+    // Simulate loading progress
+    const interval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setIsLoading(false);
+            if (onLoadingComplete) onLoadingComplete();
+          }, 500);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [onLoadingComplete]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -121,17 +143,121 @@ function BG() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: -1,
-      }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: -1,
+        }}
+      />
+      
+      {/* Loading overlay integrated with the space background */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center pointer-events-none"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Darkened overlay to focus on loading content */}
+            <motion.div 
+              className="absolute inset-0 bg-black/60"
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
+            
+            {/* Loading content */}
+            <motion.div
+              className="relative z-10 text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Glowing ring around content */}
+              <div className="relative mb-8">
+                <motion.div
+                  className="w-32 h-32 mx-auto rounded-full border-2 border-white/20"
+                  style={{
+                    boxShadow: '0 0 30px rgba(100, 150, 255, 0.3), inset 0 0 30px rgba(100, 150, 255, 0.1)',
+                  }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                >
+                  <motion.div
+                    className="absolute top-0 left-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400"
+                    style={{ boxShadow: '0 0 10px #60a5fa' }}
+                  />
+                </motion.div>
+                
+                {/* Inner rotating ring */}
+                <motion.div
+                  className="absolute top-1/2 left-1/2 w-20 h-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                >
+                  <motion.div
+                    className="absolute top-0 left-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-400"
+                    style={{ boxShadow: '0 0 8px #a78bfa' }}
+                  />
+                </motion.div>
+                
+                {/* Center sun */}
+                <motion.div
+                  className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle at 30% 30%, #ffdd57, #ff9900)',
+                    boxShadow: '0 0 20px #ffdd57',
+                  }}
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </div>
+              
+              <motion.h1
+                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                Petra Michael
+              </motion.h1>
+              
+              <motion.p
+                className="text-gray-400 text-sm mb-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                Entering the cosmos...
+              </motion.p>
+              
+              {/* Progress bar */}
+              <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden mx-auto">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                  style={{ width: `${loadingProgress}%` }}
+                  transition={{ duration: 0.1 }}
+                />
+              </div>
+              
+              <motion.p
+                className="text-gray-500 text-xs mt-2"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                {loadingProgress}%
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
