@@ -34,10 +34,10 @@ const githubProjects = [
     link: 'https://github.com/aimatochysia/color-picker-extension'
   },
   {
-  title: 'Discord Active Apps RPC',
-  description:
-      'Show off currently active apps that also selects appropriate GIF / logo for the banner on Discord',
-  link: 'https://github.com/aimatochysia/discord-rpc'
+    title: 'Q-SafeVault',
+    description:
+      'Post-quantum zero-trust, self-hostable password manager backed by TPM (if supported) and HSM (enterprise). Uses only FIPS/NIST recommended algorithms. Cross-platform: Linux, macOS, iOS, Android, Windows.',
+    link: 'https://github.com/aimatochysia/qsafevault'
   },
 ]
 
