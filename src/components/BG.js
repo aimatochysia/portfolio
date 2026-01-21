@@ -7,25 +7,15 @@ const NUM_ASTEROIDS = 200;
 function BG({ onLoadingComplete }) {
   const canvasRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setLoadingProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setIsLoading(false);
-            if (onLoadingComplete) onLoadingComplete();
-          }, 500);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 50);
+    // Simple loading timer
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      if (onLoadingComplete) onLoadingComplete();
+    }, 2000);
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(timer);
   }, [onLoadingComplete]);
 
   useEffect(() => {
@@ -156,146 +146,24 @@ function BG({ onLoadingComplete }) {
         }}
       />
       
-      {/* Loading overlay - truly integrated with the solar system */}
+      {/* Simple loading overlay */}
       <AnimatePresence>
         {isLoading && (
           <motion.div
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            transition={{ duration: 0.5 }}
           >
-            {/* Profile picture at the center of the solar system (replacing the sun) */}
-            <motion.div
-              className="relative"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0, y: -100 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              {/* Glowing ring effect around profile - matches solar system orbit style */}
+            <div className="text-center">
+              {/* Simple spinner */}
               <motion.div
-                className="absolute -inset-4 rounded-full"
-                style={{
-                  border: '2px dashed rgba(255, 255, 255, 0.3)',
-                }}
+                className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full mx-auto mb-4"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               />
-              <motion.div
-                className="absolute -inset-12 rounded-full"
-                style={{
-                  border: '1px dashed rgba(255, 255, 255, 0.15)',
-                }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              />
-              
-              {/* Profile picture container with sun-like glow */}
-              <motion.div
-                className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden"
-                style={{
-                  boxShadow: '0 0 40px rgba(255, 221, 87, 0.4), 0 0 80px rgba(255, 153, 0, 0.2)',
-                  border: '3px solid rgba(255, 221, 87, 0.5)',
-                }}
-                animate={{ 
-                  boxShadow: [
-                    '0 0 40px rgba(255, 221, 87, 0.4), 0 0 80px rgba(255, 153, 0, 0.2)',
-                    '0 0 60px rgba(255, 221, 87, 0.6), 0 0 100px rgba(255, 153, 0, 0.3)',
-                    '0 0 40px rgba(255, 221, 87, 0.4), 0 0 80px rgba(255, 153, 0, 0.2)',
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <img
-                  src={process.env.PUBLIC_URL + '/images/self_portrait.png'}
-                  alt="Petra Michael"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              
-              {/* Small orbiting planets around the profile */}
-              <motion.div
-                className="absolute -inset-8"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <div 
-                  className="absolute top-0 left-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  style={{ background: '#1e90ff', boxShadow: '0 0 10px #1e90ff' }}
-                />
-              </motion.div>
-              <motion.div
-                className="absolute -inset-16"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              >
-                <div 
-                  className="absolute top-0 left-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  style={{ background: '#ff4500', boxShadow: '0 0 8px #ff4500' }}
-                />
-              </motion.div>
-              <motion.div
-                className="absolute -inset-24"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-              >
-                <div 
-                  className="absolute top-0 left-1/2 w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  style={{ background: '#f4a460', boxShadow: '0 0 12px #f4a460' }}
-                />
-              </motion.div>
-            </motion.div>
-            
-            {/* Loading text and progress - positioned below the solar system center */}
-            <motion.div
-              className="mt-16 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <motion.h1
-                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2"
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                Petra Michael
-              </motion.h1>
-              
-              <motion.p
-                className="text-gray-400 text-sm mb-6"
-              >
-                Entering the cosmos...
-              </motion.p>
-              
-              {/* Progress bar styled like an orbit path */}
-              <div className="relative w-64 h-2 mx-auto">
-                <div className="absolute inset-0 rounded-full bg-white/10" />
-                <motion.div
-                  className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                  style={{ width: `${loadingProgress}%` }}
-                  transition={{ duration: 0.1 }}
-                />
-                {/* Small planet indicator on progress bar */}
-                <motion.div
-                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white"
-                  style={{ 
-                    left: `${loadingProgress}%`,
-                    transform: 'translate(-50%, -50%)',
-                    boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)'
-                  }}
-                />
-              </div>
-              
-              <motion.p
-                className="text-gray-500 text-sm mt-3"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                {loadingProgress}%
-              </motion.p>
-            </motion.div>
+              <p className="text-white/60 text-sm">Loading...</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
