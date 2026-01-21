@@ -1,17 +1,41 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SPEED_SCALE = 50;
 const NUM_ASTEROIDS = 200;  
 
-function BG() {
+function BG({ onLoadingComplete }) {
   const canvasRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simple loading timer
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      if (onLoadingComplete) onLoadingComplete();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [onLoadingComplete]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    // Get device pixel ratio for crisp rendering on high-DPI displays
+    const dpr = window.devicePixelRatio || 1;
+    
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    
+    // Set canvas size accounting for device pixel ratio
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    
+    // Scale context for crisp rendering
+    ctx.scale(dpr, dpr);
 
     const planets = [
       { radius: 4, distance: 50, speed: 0.04 * SPEED_SCALE, color: '#b0b0b0' },
@@ -51,8 +75,18 @@ function BG() {
     const planetAngles = planets.map(() => Math.random() * Math.PI * 2);
 
     function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      const newDpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      
+      canvas.width = width * newDpr;
+      canvas.height = height * newDpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(newDpr, newDpr);
+      
       stars = stars.map(star => ({
         ...star,
         x: Math.random() * width,
@@ -86,7 +120,8 @@ function BG() {
 
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, orbitRadius, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(255, 255, 255, 1.0)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1;
         ctx.setLineDash([5, 5]);
         ctx.stroke();
         ctx.setLineDash([]);
@@ -121,17 +156,39 @@ function BG() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: -1,
-      }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: -1,
+        }}
+      />
+      
+      {/* Simple loading overlay */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="text-center">
+              {/* Simple spinner */}
+              <motion.div
+                className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full mx-auto mb-4"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+              <p className="text-white/60 text-sm">Loading...</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

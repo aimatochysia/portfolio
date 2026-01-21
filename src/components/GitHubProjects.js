@@ -3,16 +3,22 @@ import * as d3 from 'd3'
 
 const githubProjects = [
   {
-    title: 'Indonesian Stock Screener',
+    title: 'Q-SafeVault',
     description:
-      'Screen Indonesian stocks based on SMAs, volatility, and volumes that update daily automatically',
-    link: 'https://github.com/aimatochysia/stock-screener'
+      'Post-quantum zero-trust, self-hostable password manager backed by TPM (if supported) and HSM (enterprise). Uses only FIPS/NIST recommended algorithms. Cross-platform: Linux, macOS, iOS, Android, Windows.',
+    link: 'https://github.com/aimatochysia/qsafevault'
   },
   {
     title: 'FicBatch - Archive of Our Own Batch Mobile Downloader and Reader',
     description:
       'Mobile app for downloading multiple and reading Archive of Our Own fanfictions on mobile devices',
     link: 'https://github.com/aimatochysia/FicBatch'
+  },
+  {
+    title: 'Indonesian Stock Screener',
+    description:
+      'Screen Indonesian stocks based on SMAs, volatility, and volumes that update daily automatically',
+    link: 'https://github.com/aimatochysia/stock-screener'
   },
   {
     title: 'Wallpaper Engine Coding Wallpaper',
@@ -33,12 +39,6 @@ const githubProjects = [
       'A simple color picker chrome extension for getting color RGB / HEX code fast',
     link: 'https://github.com/aimatochysia/color-picker-extension'
   },
-  {
-  title: 'Discord Active Apps RPC',
-  description:
-      'Show off currently active apps that also selects appropriate GIF / logo for the banner on Discord',
-  link: 'https://github.com/aimatochysia/discord-rpc'
-  },
 ]
 
 const GitHubProjects = () => {
@@ -47,15 +47,21 @@ const GitHubProjects = () => {
   useEffect(() => {
     d3.csv(
       'https://raw.githubusercontent.com/aimatochysia/steam-workshop-subscriber-count/main/subscriber_count.csv'
-    ).then(data => {
-      const filteredData = data
-        .map(row => +row['3238355078'])
-        .filter(value => !isNaN(value))
-      const gains = filteredData.map((value, index) =>
-        index === 0 ? 0 : value - filteredData[index - 1]
-      )
-      setSubscriberData(gains)
-    })
+    )
+      .then(data => {
+        const filteredData = data
+          .map(row => +row['3238355078'])
+          .filter(value => !isNaN(value))
+        const gains = filteredData.map((value, index) =>
+          index === 0 ? 0 : value - filteredData[index - 1]
+        )
+        setSubscriberData(gains)
+      })
+      .catch(error => {
+        console.warn('Could not load subscriber data:', error)
+        // Set some sample data as fallback
+        setSubscriberData([5, 12, 8, 15, 10, 18, 7, 20, 14, 9])
+      })
   }, [])
 
   const renderGraph = data => {
