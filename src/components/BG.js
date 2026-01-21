@@ -22,8 +22,20 @@ function BG({ onLoadingComplete }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    // Get device pixel ratio for crisp rendering on high-DPI displays
+    const dpr = window.devicePixelRatio || 1;
+    
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    
+    // Set canvas size accounting for device pixel ratio
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    
+    // Scale context for crisp rendering
+    ctx.scale(dpr, dpr);
 
     const planets = [
       { radius: 4, distance: 50, speed: 0.04 * SPEED_SCALE, color: '#b0b0b0' },
@@ -63,8 +75,18 @@ function BG({ onLoadingComplete }) {
     const planetAngles = planets.map(() => Math.random() * Math.PI * 2);
 
     function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      const newDpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      
+      canvas.width = width * newDpr;
+      canvas.height = height * newDpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(newDpr, newDpr);
+      
       stars = stars.map(star => ({
         ...star,
         x: Math.random() * width,
@@ -98,7 +120,8 @@ function BG({ onLoadingComplete }) {
 
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, orbitRadius, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(255, 255, 255, 1.0)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1;
         ctx.setLineDash([5, 5]);
         ctx.stroke();
         ctx.setLineDash([]);
@@ -140,8 +163,6 @@ function BG({ onLoadingComplete }) {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100vh',
           zIndex: -1,
         }}
       />
