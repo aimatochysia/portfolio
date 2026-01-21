@@ -1,5 +1,5 @@
 # 🚀 Petra Michael - Portfolio
-![Live Link](https://petramichael.vercel.app)
+[Live Link](https://petramichael.vercel.app)
 My modern, space-themed portfolio website built with React.js showcasing skills, experience, projects, publications, and certifications.
 
 ## 📄 License
